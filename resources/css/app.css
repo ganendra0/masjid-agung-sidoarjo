@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --color-primary-50: #E7F5F0;
+    --color-primary-100: #C5E8DC;
+    --color-primary: #087F5B;
+    --color-primary-dark: #064E3B;
+
+    --color-gold-light: #F3E7CF;
+    --color-gold: #D4AF70;
+    --color-gold-dark: #8A6A2B;
+
+    --color-surface: #F4F7F5;
+    --color-ink: #1F2937;
+
+    --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+    --shadow-soft: 0 4px 24px -6px rgba(6, 78, 59, 0.10);
+    --shadow-lift: 0 16px 40px -12px rgba(6, 78, 59, 0.22);
+}
+
+@layer base {
+    html { scroll-behavior: smooth; }
+    body { @apply bg-surface font-sans text-ink antialiased; }
+    [x-cloak] { display: none !important; }
+    :focus-visible { @apply outline-none ring-2 ring-gold ring-offset-2; }
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, ::before, ::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+}
+
+@layer components {
+    .container-page { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+    .section { @apply py-16 lg:py-24; }
+
+    .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-300; }
+    .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-300 bg-primary text-white hover:-translate-y-0.5 hover:bg-primary-dark hover:shadow-lift; }
+    .btn-gold { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-300 bg-gold text-primary-dark hover:-translate-y-0.5 hover:brightness-95 hover:shadow-lift; }
+    .btn-outline { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-300 border border-primary text-primary hover:bg-primary hover:text-white; }
+    .btn-light { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-300 border border-white/60 text-white hover:bg-white hover:text-primary-dark; }
+
+    .card { @apply rounded-2xl bg-white shadow-soft ring-1 ring-black/5 transition duration-300 hover:-translate-y-1 hover:shadow-lift; }
+    .badge { @apply inline-flex items-center rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold text-primary; }
+    .input { @apply w-full rounded-full border-0 bg-white px-5 py-3 text-sm ring-1 ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-primary; }
+    .eyebrow { @apply text-xs font-bold uppercase tracking-[0.2em] text-gold-dark; }
+}

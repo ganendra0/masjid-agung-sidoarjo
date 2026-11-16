@@ -1,0 +1,28 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        foreach (['news_categories', 'agenda_categories', 'gallery_categories'] as $table) {
+            Schema::table($table, function (Blueprint $table) {
+                if (! Schema::hasColumn($table->getTable(), 'description')) {
+                    $table->string('description')->nullable()->after('slug');
+                }
+            });
+        }
+    }
+
+    public function down(): void
+    {
+        foreach (['news_categories', 'agenda_categories', 'gallery_categories'] as $table) {
+            Schema::table($table, function (Blueprint $table) {
+                $table->dropColumnIfExists('description');
+            });
+        }
+    }
+};
