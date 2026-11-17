@@ -36,10 +36,14 @@ class ManageMosqueProfile extends Page
             Section::make('Profil Masjid')->schema([
                 Fields\TextInput::make('name')->label('Nama Masjid')->required(),
                 Fields\TextInput::make('tagline')->label('Tagline'),
-                Fields\Textarea::make('description')->label('Deskripsi'),
+                Fields\RichEditor::make('description')
+                    ->label('Deskripsi')
+                    ->helperText('Tekan Enter untuk membuat paragraf baru. Gunakan toolbar untuk merapikan isi.'),
                 Fields\RichEditor::make('history')->label('Sejarah'),
                 Fields\Textarea::make('vision')->label('Visi'),
-                Fields\Textarea::make('mission')->label('Misi'),
+                Fields\RichEditor::make('mission')
+                    ->label('Misi')
+                    ->helperText('Gunakan Enter untuk paragraf baru dan tombol daftar untuk membuat poin misi.'),
                 Fields\Repeater::make('facilities')->label('Fasilitas')->schema([Fields\TextInput::make('name')->required()]),
                 Fields\FileUpload::make('photo')->image()->disk('public')->directory('mosque'),
                 Fields\TextInput::make('established_year')->numeric(),
